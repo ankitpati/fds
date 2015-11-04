@@ -10,7 +10,7 @@ int issquare(unsigned n)
     unsigned i;
     if(n==1) return 1;
     for(i=1; i<n && n!=i*i; ++i);
-    return i==n?0:1;
+    return i!=n;
 }
 
 int main()

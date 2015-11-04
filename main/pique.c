@@ -46,6 +46,7 @@ int del()
             low=i;
 
     t=proc[low];
+
     for(i=low; i>front; --i) proc[i]=proc[i-1];
     ++front;
 

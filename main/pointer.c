@@ -24,14 +24,18 @@ char *getstr()
 char *strsearch(char *hay, char *ned)
 {
     size_t pos, nlen, i;
+
     for(nlen=0; ned[nlen]; ++nlen);
     if(!nlen) return NULL;
+
     for(i=0; hay[i] && i<nlen; ++i);
     if(i!=nlen) return NULL;
+
     for(pos=0; hay[pos+nlen-1]; ++pos){
         for(i=0; i<nlen && (hay+pos)[i]==ned[i]; ++i);
         if(i==nlen) return hay+pos;
     }
+
     return NULL;
 }
 
@@ -51,12 +55,9 @@ int *sort(int *a, unsigned n)
     return a;
 }
 
-int isleap(unsigned y)
+int isleap(unsigned year)
 {
-    if     (!(y%400)) return 1;
-    else if(!(y%100)) return 0;
-    else if(!(y%  4)) return 1;
-    return 0;
+    return year%400?year%100?year%4?0:1:0:1;
 }
 
 int isvaliddate(unsigned y, unsigned m, unsigned d)

@@ -37,7 +37,7 @@ int main()
     puts("Infix to Postfix. Enter infix expression:");
 
     while((tk=getchar())!='\n'){
-        if(isalnum(tk)) putchar(tk);
+             if(isalnum(tk)) putchar(tk);
         else if(tk == '(') push(tk);
         else if(tk == ')') while((tk=pop())!='(') putchar(tk);
         else{

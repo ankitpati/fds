@@ -110,14 +110,12 @@ mat mat_add(mat m1, mat m2)
         t.r=t.c=0;
         return t;
     }
-    else{
-        t=mat_alloc(m1.r, m1.c);
-        t.r=m1.r;
-        t.c=m1.c;
-        for(i=0; i<m1.r; ++i)
-            for(j=0; j<m1.c; ++j)
-                *mat_indx(t, i, j)=*mat_indx(m1, i, j)+*mat_indx(m2, i, j);
-    }
+    t=mat_alloc(m1.r, m1.c);
+    t.r=m1.r;
+    t.c=m1.c;
+    for(i=0; i<m1.r; ++i)
+        for(j=0; j<m1.c; ++j)
+            *mat_indx(t, i, j)=*mat_indx(m1, i, j)+*mat_indx(m2, i, j);
     return t;
 }
 
@@ -129,14 +127,12 @@ mat mat_sub(mat m1, mat m2)
         t.r=t.c=0;
         return t;
     }
-    else{
-        t=mat_alloc(m1.r, m1.c);
-        t.r=m1.r;
-        t.c=m1.c;
-        for(i=0; i<m1.r; ++i)
-            for(j=0; j<m1.c; ++j)
-                *mat_indx(t, i, j)=*mat_indx(m1, i, j)-*mat_indx(m2, i, j);
-    }
+    t=mat_alloc(m1.r, m1.c);
+    t.r=m1.r;
+    t.c=m1.c;
+    for(i=0; i<m1.r; ++i)
+        for(j=0; j<m1.c; ++j)
+            *mat_indx(t, i, j)=*mat_indx(m1, i, j)-*mat_indx(m2, i, j);
     return t;
 }
 
@@ -148,13 +144,11 @@ mat mat_mul(mat m1, mat m2)
         t.r=t.c=0;
         return t;
     }
-    else{
-        if(!(t=mat_alloc(m1.r, m2.c)).r) return t;
-        for(i=0; i<m1.r; ++i)
-            for(j=0; j<m2.c; ++j)
-                for(k=*mat_indx(t, i, j)=0; k<m2.r; ++k)
-                    *mat_indx(t, i, j)+=*mat_indx(m1, i, k)**mat_indx(m2, k, j);
-    }
+    if(!(t=mat_alloc(m1.r, m2.c)).r) return t;
+    for(i=0; i<m1.r; ++i)
+        for(j=0; j<m2.c; ++j)
+            for(k=*mat_indx(t, i, j)=0; k<m2.r; ++k)
+                *mat_indx(t, i, j)+=*mat_indx(m1, i, k)**mat_indx(m2, k, j);
     return t;
 }
 
@@ -207,7 +201,8 @@ void up_tri(mat m)
 
 void row_great(mat m)
 {
-    unsigned i, j, gr;
+    unsigned i, j;
+    mat_type gr;
     printf("Greatest Number:\n");
     for(i=0; i<m.r; ++i){
         for(j=0, gr=*mat_indx(m, i, 0); j<m.c; ++j)

@@ -9,7 +9,7 @@
 /* matrix code */
 void mat_read(int m[][80], int r, int c)
 {
-    unsigned i, j;
+    int i, j;
     for(i=0; i<r; ++i)
         for(j=0; j<c; ++j)
             scanf(" %d%*c", &m[i][j]);
@@ -17,7 +17,7 @@ void mat_read(int m[][80], int r, int c)
 
 void mat_write(int m[][80], int r, int c)
 {
-    unsigned i, j;
+    int i, j;
     for(i=0; i<r; ++i){
         for(j=0; j<c; ++j)
             printf("% 5d ", m[i][j]);
@@ -28,7 +28,7 @@ void mat_write(int m[][80], int r, int c)
 
 void mat_add(int m1[][80], int r1, int c1, int m2[][80], int r2, int c2)
 {
-    unsigned i, j;
+    int i, j;
     int m[80][80];
     if(r1!=r2 || c1!=c2) puts("Not Possible");
     else{
@@ -43,7 +43,7 @@ void mat_add(int m1[][80], int r1, int c1, int m2[][80], int r2, int c2)
 /* sparse code */
 void sparsify(int sp[][80], int m[][80], int r, int c)
 {
-    unsigned i, j, k;
+    int i, j, k;
     sp[0][0]=r;
     sp[0][1]=c;
     for(i=k=0; i<r; ++i)
@@ -59,7 +59,7 @@ void sparsify(int sp[][80], int m[][80], int r, int c)
 
 void sp_add(int sp1[][80], int sp2[][80])
 {
-    unsigned i, j, k, c;
+    int i, j, k, c;
     int sp[80][80];
     if(sp1[0][0]!=sp2[0][0] || sp1[0][1]!=sp1[0][1]){
         puts("Not Possible");
@@ -103,7 +103,7 @@ void sp_add(int sp1[][80], int sp2[][80])
 
 int main()
 {
-    unsigned r1, c1, r2, c2, ch;
+    int r1, c1, r2, c2, ch;
     int m1[80][80], m2[80][80], sp1[80][80], sp2[80][80];
 
     puts("Enter row and column numbers of matrices 1 and 2:");

@@ -15,7 +15,7 @@ int main()
 
     /* Method 1 */
     {
-        for(i=a>b?a:b; a%i || b%i; --i);
+        for(i=a<b?a:b; a%i || b%i; --i);
         printf("\nHCF = %u\nLCM = %u\n", i, a*b/i);
     }
 

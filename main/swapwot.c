@@ -7,16 +7,21 @@
 
 int main()
 {
-    double a, b;
+    unsigned a, b;
     printf("Enter two numbers:\n");
-    scanf(" %lf %lf%*c", &a, &b);
-    printf("Entered: %.2lf %.2lf\n", a, b);
+    scanf(" %u %u%*c", &a, &b);
+    printf("Entered       : %3u %3u\n", a, b);
 
-    a+=b;
+    a=a+b;
     b=a-b;
-    a-=b;
+    a=a-b;
+    printf("Addition Swap : %3u %3u\n", a, b);
 
-    printf("Swapped: %.2lf %.2lf\n", a, b);
+    a^=b;
+    b^=a;
+    a^=b;
+    printf("XOR Swap      : %3u %3u\n", a, b);
+
     return 0;
 }
 /* end of swapwot.c */

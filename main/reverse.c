@@ -9,14 +9,14 @@
 
 char *strrev(char *s)
 {
-     unsigned i, j;
-     char t;
-     for(i=0, j=strlen(s)-1; i<j; ++i, --j){
-         t=s[i];
-         s[i]=s[j];
-         s[j]=t;
-     }
-     return s;
+    int i, j;
+    char t;
+    for(i=0, j=strlen(s)-1; i<j; ++i, --j){
+        t=s[i];
+        s[i]=s[j];
+        s[j]=t;
+    }
+    return s;
 }
 
 int main()

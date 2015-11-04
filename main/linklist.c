@@ -29,16 +29,16 @@ typedef struct{
     } dob, doj;
 } empl;
 
-struct node{
+typedef struct Node{
     empl data;
-    struct node *next;
-};
+    struct Node *next;
+} node;
 
-struct node *first=NULL;
+node *first=NULL;
 
 void push(empl data)
 {
-    struct node *tmp;
+    node *tmp;
     if(!first){
         first=malloc(sizeof(*first));
         first->data=data;
@@ -53,10 +53,10 @@ void push(empl data)
 
 empl pop()
 {
-    struct node *tmp, *prev;
+    node *tmp, *prev;
     empl ret={"", {0, 0, 0}, {0, 0, 0}};
     if(!first){
-        fprintf(stderr, "node pop(): Stack underflow!\n");
+        fprintf(stderr, "pop(): Stack underflow!\n");
         return ret;
     }
     for(tmp=first; tmp->next; tmp=tmp->next) prev=tmp;
@@ -70,14 +70,10 @@ empl pop()
 void del(unsigned n)
 {
     unsigned i;
-    struct node *tmp, *prev;
+    node *tmp, *prev;
     if(!first) return;
     --n;
-    for(
-            tmp=first, i=0;
-                tmp->next && i<n;
-                tmp=tmp->next, ++i
-        ) prev=tmp;
+    for(tmp=first, i=0; tmp->next && i<n; tmp=tmp->next, ++i) prev=tmp;
     if(tmp!=first) prev->next=tmp->next;
     else first=tmp->next;
     free(tmp);
@@ -86,7 +82,7 @@ void del(unsigned n)
 void mod(empl data, unsigned n)
 {
     unsigned i;
-    struct node *tmp;
+    node *tmp;
     if(!first) return;
     --n;
     for(tmp=first, i=0; tmp->next && i<n; tmp=tmp->next, ++i);
@@ -104,14 +100,14 @@ void accept(empl *a)
 
 void display(empl a)
 {
-        printf("- Name : %s\n- DOB  : %.4u-%.2u-%.2u\n- DOJ  : %.4u-%.2u-%.2u\n\n",
-                a.name, a.dob.y, a.dob.m, a.dob.d, a.doj.y, a.doj.m, a.doj.d);
+    printf("- Name : %s\n- DOB  : %.4u-%.2u-%.2u\n- DOJ  : %.4u-%.2u-%.2u\n\n",
+            a.name, a.dob.y, a.dob.m, a.dob.d, a.doj.y, a.doj.m, a.doj.d);
 }
 
 void linkdisp()
 {
-        struct node *tmp;
-        for(tmp=first; tmp; tmp=tmp->next) display(tmp->data);
+    node *tmp;
+    for(tmp=first; tmp; tmp=tmp->next) display(tmp->data);
 }
 
 int main()

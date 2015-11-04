@@ -25,7 +25,7 @@ float posteval(char *s)
 
     for(i=0; s[i]; ++i){
         if(isspace(s[i])) continue;
-        if( isdigit(s[i]) ){
+        if(isdigit(s[i])){
             push(atoi(s+i));
             while( !isspace(s[i+1]) ) ++i;
         }

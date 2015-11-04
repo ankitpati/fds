@@ -28,7 +28,7 @@ double expr(char *s) /* s MUST be allocated with malloc() */
 {
     double tmp, froms;
     unsigned opi, i, j, k, len, tmi, tlen;
-    char op[]="^r/*%+-", curop[10], tms[320]; /* 320: more than maximum digits in "%lf" */
+    char op[]="^r/*%+-", curop[10], tms[80];
 
     for(opi=0; opi<4; ++opi)
         for(i=0; s[i]; ++i){
@@ -67,7 +67,7 @@ double expr(char *s) /* s MUST be allocated with malloc() */
                         0
                     );
 
-                    sprintf(tms, "%lf", tmp);
+                    snprintf(tms, 80, "%lf", tmp);
 
                     tlen=strlen(tms);
                     for(j=s[i+1]=='-'?i+2:i+1; s[j] && (isdigit(s[j]) || s[j]=='.'); ++j);
