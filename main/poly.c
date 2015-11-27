@@ -13,15 +13,15 @@ typedef struct{
 /* matrix handling code */
 typedef struct{
     mat_type *m;
-    unsigned r, c;
+    size_t r, c;
 } mat;
 
-mat_type *mat_indx(mat m, unsigned r, unsigned c)
+mat_type *mat_indx(mat m, size_t r, size_t c)
 {
     return m.m+m.c*r+c;
 }
 
-mat mat_alloc(unsigned r, unsigned c)
+mat mat_alloc(size_t r, size_t c)
 {
     mat m;
     if(!(m.m=malloc(sizeof(*m.m)*r*c))){
@@ -42,11 +42,11 @@ mat mat_free(mat m)
 /* end of matrix handling code */
 
 /* polynomial handling code */
-int n;
+size_t n;
 
-poly *addpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
+poly *addpoly(poly *p1, size_t n1, poly *p2, size_t n2)
 {
-    unsigned i, j, k;
+    size_t i, j, k;
     poly *p;
     i=j=k=n=0;
     if(!(p=malloc(sizeof(*p)*(n1+n2)))) return NULL;
@@ -87,9 +87,9 @@ poly *addpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
     return p;
 }
 
-poly *subpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
+poly *subpoly(poly *p1, size_t n1, poly *p2, size_t n2)
 {
-    unsigned j;
+    size_t j;
     poly *p;
     for(j=0; j<n2; ++j) p2[j].c=-p2[j].c;
     p=addpoly(p1, n1, p2, n2);
@@ -97,9 +97,9 @@ poly *subpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
     return p;
 }
 
-poly *mulpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
+poly *mulpoly(poly *p1, size_t n1, poly *p2, size_t n2)
 {
-    unsigned i, j, k;
+    size_t i, j, k;
     mat p;
     poly *f, *tmp;
     i=j=k=0;
@@ -123,9 +123,9 @@ poly *mulpoly(poly *p1, unsigned n1, poly *p2, unsigned n2)
     return f;
 }
 
-poly *readpoly(unsigned n)
+poly *readpoly(size_t n)
 {
-    unsigned i;
+    size_t i;
     poly *p;
     if(!(p=malloc(sizeof(*p)*n))) return NULL;
     for(i=0; i<n; ++i)
@@ -133,9 +133,9 @@ poly *readpoly(unsigned n)
     return p;
 }
 
-void writepoly(poly *p, unsigned n)
+void writepoly(poly *p, size_t n)
 {
-    unsigned i;
+    size_t i;
     for(i=0; i<n; ++i)
         printf("+ %.2lfx^%.2lf ", p[i].c, p[i].e);
 }
@@ -144,16 +144,17 @@ void writepoly(poly *p, unsigned n)
 int main()
 {
     poly *p, *q, *r;
-    unsigned i, j, ch;
+    size_t i, j;
+    unsigned ch;
 
     puts("Number of terms for 1st polynomial:");
-    scanf(" %u%*c", &i);
+    scanf(" %lu%*c", &i);
     puts("Terms of polynomial:");
     p=readpoly(i);
     putchar('\n');
 
     puts("Number of terms for 2nd polynomial:");
-    scanf(" %u%*c", &j);
+    scanf(" %lu%*c", &j);
     puts("Terms of polynomial:");
     q=readpoly(j);
     putchar('\n');
