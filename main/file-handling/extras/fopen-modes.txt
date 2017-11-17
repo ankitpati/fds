@@ -1,0 +1,15 @@
+r   open      text   file for read
+w   create    text   file for write
+a   append to text   file
+
+rb  open      binary file for read
+wb  create    binary file for write
+ab  append to binary file
+
+r+  open      text   file for read/write
+w+  create    text   file for read/write
+a+  append to text   file in  read/write mode
+
+rb+ open      binary file for read/write
+wb+ create    binary file for read/write
+ab+ append to binary file in  read/write mode
